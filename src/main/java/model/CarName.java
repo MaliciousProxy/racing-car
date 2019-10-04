@@ -5,13 +5,20 @@ import model.exception.CarNameLengthException;
 import java.util.Objects;
 
 public class CarName {
+    private static final int MIN_NAME_LENGTH = 0;
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public CarName(final String name) {
-        if (name.length() > 5 || name.length() <= 0) {
+        checkNameLength(name);
+        this.name = name;
+    }
+
+    private void checkNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH || name.length() <= MIN_NAME_LENGTH) {
             throw new CarNameLengthException();
         }
-        this.name = name;
     }
 
     public String getName() {
