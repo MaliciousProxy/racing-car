@@ -3,31 +3,33 @@ package model;
 import java.util.Objects;
 
 public class Car {
+    private static final int MOVE_POINT = 4;
+
     private final CarName carName;
-    private int position;
+    private CarPosition position;
 
     public Car(final CarName carName) {
-        this(carName, 0);
+        this(carName, new CarPosition(0));
     }
 
-    private Car(CarName carName, int position) {
+    private Car(CarName carName, CarPosition position) {
         this.carName = carName;
         this.position = position;
     }
 
     public Car move(int number) {
-        if (number >= 4) {
-            return new Car(this.carName, ++this.position);
+        if (number >= MOVE_POINT) {
+            return new Car(this.carName, this.position.plus());
         }
         return this;
     }
 
     public boolean isSamePosition(int position) {
-        return this.position == position;
+        return this.position.isSamePosition(new CarPosition(position));
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public String getName() {
