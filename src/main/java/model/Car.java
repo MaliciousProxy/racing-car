@@ -3,17 +3,14 @@ package model;
 import java.util.Objects;
 
 public class Car {
-    private final String carName;
+    private final CarName carName;
     private int position;
 
-    public Car(final String carName) {
+    public Car(final CarName carName) {
         this(carName, 0);
     }
 
-    private Car(String carName, int position) {
-        if (carName.length() > 5 || carName.length() <= 0) {
-            throw new IllegalArgumentException();
-        }
+    private Car(CarName carName, int position) {
         this.carName = carName;
         this.position = position;
     }
@@ -34,7 +31,7 @@ public class Car {
     }
 
     public String getName() {
-        return carName;
+        return carName.getName();
     }
 
     @Override
@@ -48,5 +45,13 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(carName);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carName=" + carName +
+                ", position=" + position +
+                '}';
     }
 }

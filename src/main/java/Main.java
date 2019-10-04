@@ -1,4 +1,5 @@
 import model.Car;
+import model.CarName;
 import model.Cars;
 import utils.RandomGenerator;
 import view.InputView;
@@ -11,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         List<String> carNames = InputView.inputCarNames();
         Cars cars = new Cars(carNames.stream()
+                .map(CarName::new)
                 .map(Car::new)
                 .collect(Collectors.toList()));
 
