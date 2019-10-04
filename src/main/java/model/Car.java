@@ -33,6 +33,10 @@ public class Car {
         return position;
     }
 
+    public String getName() {
+        return carName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
