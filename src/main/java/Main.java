@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         List<String> carNames = InputView.inputCarNames();
+
         Cars cars = new Cars(carNames.stream()
                 .map(CarName::new)
                 .map(Car::new)
