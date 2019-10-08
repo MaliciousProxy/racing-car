@@ -23,6 +23,10 @@ public final class CarName {
         return name.length() == MIN_LENGTH || name.length() > MAX_LENGTH;
     }
 
+    String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

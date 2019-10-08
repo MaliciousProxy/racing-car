@@ -2,13 +2,17 @@ package domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
+    private static final int INIT_POSITION = 0;
+    private static final int MOVING_CONDITION = 4;
+    private static final int MOVE_AMOUNT = 1;
+
     private CarName name;
     private int position;
 
     public Car(String name) {
         this.name = new CarName(name);
-        this.position = 0;
+        this.position = INIT_POSITION;
     }
 
     public Car(CarName name, int position) {
@@ -16,11 +20,28 @@ public class Car {
         this.position = position;
     }
 
-    public Car move(int i) {
-        if (i >= 4) {
-            return new Car(name, position + 1);
+    public Car move(int condition) {
+        if (condition >= MOVING_CONDITION) {
+            return new Car(name, position + MOVE_AMOUNT);
         }
         return this;
+    }
+
+    boolean isSamePosition(Car car) {
+        return this.position == car.position;
+    }
+
+    public String getCarName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(car.position, this.position);
     }
 
     @Override
