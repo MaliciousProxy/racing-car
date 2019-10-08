@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public final class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 0;
     private static final int MOVING_CONDITION = 4;
     private static final int MOVE_AMOUNT = 1;
@@ -11,8 +11,7 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(String name) {
-        this.name = new CarName(name);
-        this.position = INIT_POSITION;
+        this(new CarName(name), INIT_POSITION);
     }
 
     public Car(CarName name, int position) {

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -25,8 +26,8 @@ public class CarsTest {
     @Test
     void 움직임_테스트() {
         Cars cars = new Cars(Arrays.asList("a", "b", "c"));
-        cars.moveCars((countOfCars) -> Arrays.asList(1));
-// TODO: 2019-10-08 getter issue
-        assertThat(cars);
+        cars.moveCars((countOfCars) -> Arrays.asList(1, 1, 4));
+        List<Car> movedCars = cars.getCars();
+        assertThat(movedCars).isEqualTo(Arrays.asList(new Car("a"), new Car("b"), new Car(new CarName("c"), 1)));
     }
 }

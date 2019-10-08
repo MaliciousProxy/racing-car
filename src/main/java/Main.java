@@ -14,11 +14,9 @@ public class Main {
 
         Cars cars = new Cars(carNames);
         RacingGame racingGame = new RacingGame(cars, round);
-        RoundResults play = racingGame.play(new RandomStrategy());
+        RoundResults roundResults = racingGame.play(new RandomStrategy(), new RoundResults());
 
-        play.getResults().forEach((r, roundResult) -> {
-            OutputView.printPositionByRound(roundResult.getCars());
-        });
+        roundResults.getResults().forEach((r, roundResult) -> OutputView.printPositionByRound(roundResult.getCars()));
 
         OutputView.printWinners(racingGame.findWinner());
     }

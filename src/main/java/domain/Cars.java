@@ -1,33 +1,42 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class Cars {
-    private Map<String, Car> cars = new HashMap<>();
+    private List<Car> cars = new ArrayList<>();
 
     public Cars(List<String> carNames) {
+        validate(carNames);
+
         for (String name : carNames) {
-            Car car = new Car(name);
-            cars.put(name, car);
+            cars.add(new Car(name));
         }
     }
 
-    public List<Car> moveCars(Strategy strategy) {
-        List<Integer> r = strategy.createNumber(cars.size());
-        ArrayList<Car> cars = new ArrayList<>(this.cars.values());
-
-        for (int i = 0; i < r.size(); i++) {
-            Car movedCar = cars.get(i).move(r.get(i));
-            String carName = movedCar.getCarName();
-            this.cars.put(carName, movedCar);
+    private void validate(List<String> carNames) {
+        Set<String> unDuplicatedCarNames = new HashSet<>(carNames);
+        if (carNames.size() != unDuplicatedCarNames.size()) {
+            throw new IllegalArgumentException("차 이름은 중복될 수 없습니다.");
         }
-        return cars;
+    }
+
+    public void moveCars(Strategy strategy) {
+        int countOfCars = cars.size();
+        List<Integer> movingConditions = strategy.createNumber(countOfCars);
+        List<Car> movedCars = new ArrayList<>();
+
+        for (int i = 0; i < countOfCars; i++) {
+            Car movedCar = cars.get(i).move(movingConditions.get(i));
+            movedCars.add(movedCar);
+        }
+
+        this.cars = movedCars;
     }
 
     public List<Car> getCars() {
-        return new ArrayList<>(this.cars.values());
+        return new ArrayList<>(cars);
     }
 }

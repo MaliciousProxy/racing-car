@@ -19,7 +19,7 @@ class RacingGameTest {
     @Test
     void 우승자_구하기_한명() {
         RacingGame racingGame = new RacingGame(cars, 1);
-        racingGame.play((car) -> Arrays.asList(5, 1, 1, 1));
+        racingGame.play((car) -> Arrays.asList(5, 1, 1, 1), new RoundResults());
 
         assertThat(racingGame.findWinner()).isEqualTo(Collections.singletonList("a"));
     }
@@ -27,7 +27,7 @@ class RacingGameTest {
     @Test
     void 우승자_구하기_여러명() {
         RacingGame racingGame = new RacingGame(cars, 1);
-        racingGame.play((car) -> Arrays.asList(5, 5, 5, 1));
+        racingGame.play((car) -> Arrays.asList(5, 5, 5, 1), new RoundResults());
 
         assertThat(racingGame.findWinner()).isEqualTo(Arrays.asList("a", "b", "c"));
     }

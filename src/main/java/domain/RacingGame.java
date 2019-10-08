@@ -12,11 +12,10 @@ public class RacingGame {
         this.round = round;
     }
 
-    public RoundResults play(Strategy strategy) {
-        RoundResults roundResults = new RoundResults();
-
+    public RoundResults play(Strategy strategy, RoundResults roundResults) {
         for (int i = 1; i <= round; i++) {
-            roundResults.addRoundResult(i, cars.moveCars(strategy));
+            cars.moveCars(strategy);
+            roundResults.addRoundResult(i, cars.getCars());
         }
         return roundResults;
     }
