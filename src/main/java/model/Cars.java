@@ -1,6 +1,7 @@
 package model;
 
 import model.exception.DuplicatedCarNameException;
+import model.exception.GameNotAvailableException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,8 +10,21 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(final List<Car> cars) {
-        validateDuplicatedCarName(cars);
+        validateCars(cars);
         this.cars = cars;
+    }
+
+    private void validateCars(List<Car> cars) {
+        validateAvailableNumberOfCars(cars.size());
+        validateDuplicatedCarName(cars);
+    }
+
+    private void validateAvailableNumberOfCars(int size) {
+        int minNumberOfCars = 2;
+
+        if(size < minNumberOfCars) {
+            throw new GameNotAvailableException();
+        }
     }
 
     private void validateDuplicatedCarName(List<Car> cars) {

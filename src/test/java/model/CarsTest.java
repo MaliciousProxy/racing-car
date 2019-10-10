@@ -1,6 +1,7 @@
 package model;
 
 import model.exception.DuplicatedCarNameException;
+import model.exception.GameNotAvailableException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,5 +59,10 @@ class CarsTest {
         cars = cars.moveCars(randoms);
 
         assertThat(cars.getWinners()).isEqualTo(Arrays.asList(carA, carB));
+    }
+
+    @Test
+    void 최소_자동차_개수_예외_테스트() {
+        assertThrows(GameNotAvailableException.class, () -> new Cars(Collections.singletonList(carA)));
     }
 }
