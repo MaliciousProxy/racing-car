@@ -9,10 +9,18 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(final List<Car> cars) {
-        if (cars.size() != new HashSet<>(cars).size()) {
+        validateDuplicatedCarName(cars);
+        this.cars = cars;
+    }
+
+    private void validateDuplicatedCarName(List<Car> cars) {
+        if (duplicateCarName(cars)) {
             throw new DuplicatedCarNameException();
         }
-        this.cars = cars;
+    }
+
+    private boolean duplicateCarName(List<Car> cars) {
+        return cars.size() != new HashSet<>(cars).size();
     }
 
     public Cars moveCars(List<Integer> randomNumbers) {
