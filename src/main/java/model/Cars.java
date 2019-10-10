@@ -2,6 +2,7 @@ package model;
 
 import model.exception.DuplicatedCarNameException;
 import model.exception.GameNotAvailableException;
+import model.exception.NotFoundMaxPositionException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -48,13 +49,17 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
-        int maxPosition = cars.stream().map(Car::getPosition)
-                .max(Integer::compareTo)
-                .orElse(-1);
+        int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream().map(Car::getPosition)
+                .max(Integer::compareTo)
+               .orElseThrow(NotFoundMaxPositionException::new);
     }
 
     public int getSize() {
