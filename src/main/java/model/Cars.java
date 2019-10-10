@@ -1,6 +1,8 @@
 package model;
 
 import model.exception.DuplicatedCarNameException;
+import model.exception.GameNotAvailableException;
+import model.exception.NotFoundMaxPositionException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,10 +11,31 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(final List<Car> cars) {
-        if (cars.size() != new HashSet<>(cars).size()) {
+        validateCars(cars);
+        this.cars = cars;
+    }
+
+    private void validateCars(List<Car> cars) {
+        validateAvailableNumberOfCars(cars.size());
+        validateDuplicatedCarName(cars);
+    }
+
+    private void validateAvailableNumberOfCars(int size) {
+        int minNumberOfCars = 2;
+
+        if(size < minNumberOfCars) {
+            throw new GameNotAvailableException();
+        }
+    }
+
+    private void validateDuplicatedCarName(List<Car> cars) {
+        if (duplicateCarName(cars)) {
             throw new DuplicatedCarNameException();
         }
-        this.cars = cars;
+    }
+
+    private boolean duplicateCarName(List<Car> cars) {
+        return cars.size() != new HashSet<>(cars).size();
     }
 
     public Cars moveCars(List<Integer> randomNumbers) {
@@ -26,13 +49,17 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
-        int maxPosition = cars.stream().map(Car::getPosition)
-                .max(Integer::compareTo)
-                .orElse(-1);
+        int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream().map(Car::getPosition)
+                .max(Integer::compareTo)
+               .orElseThrow(NotFoundMaxPositionException::new);
     }
 
     public int getSize() {
