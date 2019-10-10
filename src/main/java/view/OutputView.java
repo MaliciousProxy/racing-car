@@ -1,14 +1,15 @@
 package view;
 
 import domain.Car;
+import domain.Cars;
 
 import java.util.List;
 
 public class OutputView {
     private static final String HYPHEN = "-";
 
-    public static void printPositionByRound(List<Car> cars) {
-        for (Car car : cars) {
+    public static void printPositionByRound(Cars cars) {
+        for (Car car : cars.getCars()) {
             printCarStatus(car);
         }
         System.out.println();

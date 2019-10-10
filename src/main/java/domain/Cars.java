@@ -25,7 +25,7 @@ public class Cars {
 
     public void moveCars(Strategy strategy) {
         int countOfCars = cars.size();
-        List<Integer> movingConditions = strategy.createNumber(countOfCars);
+        List<Integer> movingConditions = strategy.createNumbers(countOfCars);
         List<Car> movedCars = new ArrayList<>();
 
         for (int i = 0; i < countOfCars; i++) {

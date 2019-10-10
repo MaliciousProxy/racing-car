@@ -8,7 +8,7 @@ public class RandomStrategy implements Strategy {
     private static final Random RANDOM = new Random();
 
     @Override
-    public List<Integer> createNumber(int countOfCars) {
+    public List<Integer> createNumbers(int countOfCars) {
         List<Integer> randoms = new ArrayList<>();
 
         for (int i = 0; i < countOfCars; i++) {

@@ -1,18 +1,17 @@
 package domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class RoundResult {
     private final int round;
-    private final List<Car> cars;
+    private final Cars cars;
 
-    public RoundResult(int round, List<Car> cars) {
+    public RoundResult(int round, Cars cars) {
         this.round = round;
         this.cars = cars;
     }
 
-    public List<Car> getCars() {
+    public Cars getCars() {
         return cars;
     }
 

@@ -23,7 +23,7 @@ public final class CarName {
         return name.length() == MIN_LENGTH || name.length() > MAX_LENGTH;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

@@ -21,7 +21,7 @@ class RacingGameTest {
         RacingGame racingGame = new RacingGame(cars, 1);
         racingGame.play((car) -> Arrays.asList(5, 1, 1, 1), new RoundResults());
 
-        assertThat(racingGame.findWinner()).isEqualTo(Collections.singletonList("a"));
+        assertThat(racingGame.findWinners()).isEqualTo(Collections.singletonList("a"));
     }
 
     @Test
@@ -29,6 +29,6 @@ class RacingGameTest {
         RacingGame racingGame = new RacingGame(cars, 1);
         racingGame.play((car) -> Arrays.asList(5, 5, 5, 1), new RoundResults());
 
-        assertThat(racingGame.findWinner()).isEqualTo(Arrays.asList("a", "b", "c"));
+        assertThat(racingGame.findWinners()).isEqualTo(Arrays.asList("a", "b", "c"));
     }
 }

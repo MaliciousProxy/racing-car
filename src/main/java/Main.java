@@ -18,6 +18,6 @@ public class Main {
 
         roundResults.getResults().forEach((r, roundResult) -> OutputView.printPositionByRound(roundResult.getCars()));
 
-        OutputView.printWinners(racingGame.findWinner());
+        OutputView.printWinners(racingGame.findWinners());
     }
 }

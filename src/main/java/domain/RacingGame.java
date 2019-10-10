@@ -15,19 +15,25 @@ public class RacingGame {
     public RoundResults play(Strategy strategy, RoundResults roundResults) {
         for (int i = 1; i <= round; i++) {
             cars.moveCars(strategy);
-            roundResults.addRoundResult(i, cars.getCars());
+            roundResults.addRoundResult(i, cars);
         }
         return roundResults;
     }
 
-    public List<String> findWinner() {
+    public List<String> findWinners() {
         List<Car> sortedCars = cars.getCars();
         sortedCars.sort(null);
 
-        Car car = sortedCars.get(0);
+        Car winningCar = getWinningCar(sortedCars);
         return sortedCars.stream()
-                .filter(c -> c.isSamePosition(car))
+                .filter(c -> c.isSamePosition(winningCar))
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
+
+    private Car getWinningCar(List<Car> sortedCars) {
+        return sortedCars.get(0);
+    }
+
+
 }
