@@ -6,10 +6,10 @@ public class Car {
     private static final int MOVE_POINT = 4;
 
     private final CarName carName;
-    private CarPosition position;
+    private final CarPosition position;
 
     public Car(final CarName carName) {
-        this(carName, new CarPosition(0));
+        this(carName, new CarPosition());
     }
 
     private Car(CarName carName, CarPosition position) {
